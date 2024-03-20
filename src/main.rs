@@ -29,9 +29,7 @@ fn run() -> anyhow::Result<()> {
         .append(true)
         .open(&command.output)?;
 
-    let ip_addr = command
-        .addr
-        .unwrap_or(IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1)));
+    let ip_addr = command.addr.unwrap_or(IpAddr::V4(Ipv4Addr::LOCALHOST));
     let addr = SocketAddr::new(ip_addr, command.port);
 
     let listener = UdpSocket::bind(addr)?;
